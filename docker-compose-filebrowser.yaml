@@ -1,0 +1,17 @@
+  GNU nano 7.2                               docker-compose.yml                                         
+version: "3"
+
+services:
+
+  filebrowser:
+    image: hurlenko/filebrowser:v2.32.3
+    environment:
+      - UID=1000
+      - GID=1000
+      - TZ=America/Sao_Paulo
+    ports:
+      - "8233:8080"
+    volumes:
+      - ./fb-data:/data
+      - ./fb-config:/config
+    restart: unless-stopped
