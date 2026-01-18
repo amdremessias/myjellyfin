@@ -1,0 +1,22 @@
+    version: '3'
+    services:
+      monica:
+        image: monica:latest
+        env_file:
+          - .env
+        ports:
+          - "8080:80" # Map host port 8080 to container port 80
+        depends_on:
+          - db
+      db:
+        image: mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: passwordroot # Change this
+          MYSQL_DATABASE: monica_db
+          MYSQL_USER: monica_user
+          MYSQL_PASSWORD: passworddb # Change this
+        volumes:
+          - monica_db_data:/var/lib/mysql
+
+    volumes:
+      monica_db_data:
